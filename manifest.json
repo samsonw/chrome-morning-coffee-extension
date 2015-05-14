@@ -3,6 +3,7 @@
   "name": "Morning Coffee",
   "version": "1.0.0",
   "author": "Samson Wu",
+  "description": "Keeps track of routine websites and opens them in tabs",
 
   "icons": {
     "64": "img/icon.png",
