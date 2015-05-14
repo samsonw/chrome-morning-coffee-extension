@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html ng-app="optionsApp" ng-controller="optionsCtrl" ng-csp xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>
+    Morning Coffee extension options
+  </title>
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet"/>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/options.css" rel="stylesheet" type="text/css"/>
+</head>
+<body id="options">
+  <div class="fixed-top">
+    <header>
+      <img id="cast-icon" src="img/icon.png" alt="Cast">
+      <h1 class="top-title">
+        <span>Morning Coffee extension options</span>
+      </h1>
+    </header>
+  </div>
+  <div class="options-sections">
+    <section class="tabs-selection-section">
+      <h3>Manage Morning Coffee Tabs</h3>
+      <div class="table-responsive tabs-selection-table">
+        <table class="table table-hover">
+          <!-- <thead>
+            <tr><th>Manage Morning Coffee Tabs</th></tr>
+          </thead> -->
+          <tbody ui-sortable ng-model="tabs">
+            <tr ng-repeat="url in tabs track by $index" ng-click="selectUrl(url, $index)" ng-class="getUrlClass($index)">
+              <td>{{url}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="action-button-group">
+      <button type="button" class="btn btn-default btn-sm" ng-click="handleAdd()">Add...</button>
+      <button type="button" class="btn btn-default btn-sm" ng-click="handleEdit()" ng-disabled="checkDisabled()">Edit...</button>
+      <button type="button" class="btn btn-default btn-sm" ng-click="handleDelete()" ng-disabled="checkDisabled()">Delete</button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="tabEditDialog" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+              <form ng-submit="handleModalSubmit()">
+                <div class="input-group">
+                  <span class="input-group-addon" id="url-addon">URL: </span>
+                  <input type="text" class="form-control" placeholder="https://www.google.com" aria-describedby="url-addon" ng-model="inputUrl">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-default" ng-click="handleModalSubmit()">OK</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hint">
+        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+        Hint: Use drag and drop to reorder urls above.
+      </div>
+    </section>
+    <section>
+      <h3>Extra Options</h3>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-model="options.newWindow">
+          Open tabs in new window
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-model="options.randomOrder">
+          Open sites in random order
+        </label>
+      </div>
+    </section>
+  </div>
+
+  <script src="js/vendor/jquery.min.js"></script>
+  <script src="js/vendor/jquery-ui.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <!-- <script type="text/javascript" src="js/vendor/angular.js"></script> -->
+  <script type="text/javascript" src="js/vendor/angular.min.js"></script>
+  <script type="text/javascript" src="js/vendor/sortable.js"></script>
+  <script type="text/javascript" src="js/options.js"></script>
+</body>
+</html>

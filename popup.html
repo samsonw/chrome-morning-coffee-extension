@@ -1,0 +1,31 @@
+<!doctype html>
+<html ng-csp ng-app="popupApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Morning Coffee Popup</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      body {
+        font-size: 12px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 230px;
+        max-width: 250px;
+      }
+      .list-group {
+        margin-bottom: 0;
+      }
+    </style>
+  </head>
+  <body ng-controller="popupCtrl">
+    <div class="list-group">
+      <a href="#" class="list-group-item" ng-repeat="menu in menus" ng-click="menuItemClick(menu.label)">
+        {{menu.label}}
+        <span class="badge" ng-if="menu.badge !== 0">{{menu.badge}}</span>
+      </a>
+    </div>
+    <script src="js/vendor/angular.min.js"></script>
+    <script src="js/popup.js"></script>
+  </body>
+</html>
+
